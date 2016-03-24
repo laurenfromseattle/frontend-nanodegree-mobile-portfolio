@@ -7,24 +7,22 @@
 "First measure, then optimize."" To measure, go here:
 [Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)
 
-**Mobile Speed Score: 27 / 100**
-**Desktop Speed Score: 88 / 100**
-**Goal: 90+ / 100 for both Desktop and Mobile**
+**Speed Scores**
 
-Mobile Fix List
+* Mobile: 27 / 100
+* Desktop: 88 / 100
+* Goal: 90+ / 100 for both Desktop and Mobile
 
-* Primary:
+**Mobile Optimization List**
+
   1. Optimize images
   2. Eliminate render-blocking JS and CSS in above-the-fold content
+  3. Leverage browser caching
+  4. Enable compression
+  5. Minify HTML
 
-* Secondary:
-  1. Leverage browser caching
-  2. Enable compression
-  3. Minify HTML
+**Desktop Optimization List**
 
-Desktop Fix List
-
-* Secondary:
   1. Eliminate render-blocking JS and CSS in above-the-fold content
   2. Leverage browser caching
   3. Optimize images
