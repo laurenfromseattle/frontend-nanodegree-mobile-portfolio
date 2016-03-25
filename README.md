@@ -4,7 +4,7 @@
 
 ###Before: Pre-Optimization Measurements
 
-"First measure, then optimize."" To measure, go here:
+"First measure, then optimize. To measure, go here:
 [Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)
 
 **Speed Scores**
@@ -30,6 +30,42 @@
   5. Minify HTML
 
 ###Optimizations
+
+####Image Optimization
+First on our list is *image optimization*. I used the build tool Gulp to automate this. Briefly, setting up Gulp in the project space involved these steps:
+
+  1. Initialize `package.json` in project directory
+    ```npm init```
+  2. Install gulp locally in project directory
+    ```npm install --save-dev gulp```
+  3. Install required plugins
+  4. Create `gulpfile.js`
+  5. Add tasks to `gulpfile.js`
+
+Here is a great article that covers [How to Get Started with Gulp](https://travismaynard.com/writing/getting-started-with-gulp)
+
+To resize and optimize images, I used the `gulp-image-resize`, `gulp-rename`, `gulp-imagemin`, and `imagemin-pngquant` plugins.
+
+As a result:
+
+* pizzeria.jpg went from 2.25 MB to 2.94 KB (100px thumbnail).
+* profilepic.jpg went from 14 KB to 1.73 KB.
+
+####Minify HTML, CSS and JS
+Second on our list is to *minify the HTML*. I used the `gulp-htmlmin` plugin for this. I also went ahead and minified CSS and JS, using the `gulp-clean-css` and `gulp-uglify` plugins, respectively.
+
+As a result:
+
+* HTML: index.html shrunk from 2.81 KB to 2.15 KB.
+* CSS: style.css shrunk from 1.51 KB to 1.16 KB.
+* JS: perfmatters.js shrunk from 527 B to 262 B.
+
+####Render-blocking JS and CSS
+Next up, *minimize render-blocking JS and CSS*. Looking at our index.html, perfmatters.js is already async, so we don't have to worry about that. I made analytics.js async as well.
+
+For CSS, I used a media query for print.css to reduce the number of render-blocking CSS files. I also ditched the webfonts, further reducing render-blocking CSS.
+
+We're still only at 87 for Mobile PageSpeed, so I'm going to inline all the CSS, though I *really* don't like the idea of this. I used the `gulp-inline-css` plugin to do this. I ended up having to move the print media query css file into index.html manually between `<script>` tags in order for it to be preserved.
 
 ###After: Post-Optimization Measurements
 
