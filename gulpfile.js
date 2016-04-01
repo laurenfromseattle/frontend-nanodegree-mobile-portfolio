@@ -10,24 +10,33 @@ var htmlmin = require('gulp-htmlmin');
 var cssmin = require('gulp-clean-css');
 var jsmin = require('gulp-uglify');
 var inlinecss = require('gulp-inline-css');
+var merge = require('merge-stream');
 
 // Minify CSS
 gulp.task('minify-css', function() {
-	return gulp.src('src/css/*.css')
+	var firstPath = gulp.src('src/css/*.css')
 		.pipe(cssmin())
 		.pipe(gulp.dest('dist/css'));
+	var secondPath = gulp.src('src/views/css/*.css')
+		.pipe(cssmin())
+		.pipe(gulp.dest('dist/views/css'));
+	return merge(firstPath, secondPath);
 });
 
 // Minify JS
 gulp.task('minify-js', function() {
-	return gulp.src('src/js/*.js')
+	var firstPath = gulp.src('src/js/*.js')
 		.pipe(jsmin())
 		.pipe(gulp.dest('dist/js'));
+	var secondPath = gulp.src('src/views/js/*.js')
+		.pipe(jsmin())
+		.pipe(gulp.dest('dist/views/js'));
+	return merge(firstPath, secondPath);
 });
 
 // Inline CSS and Minify HTML
 gulp.task('minify-html', function() {
-	return gulp.src('src/*.html')
+	var firstPath = gulp.src('src/*.html')
 		.pipe(inlinecss({
 			preserveMediaQueries: true
 		}))
@@ -39,6 +48,16 @@ gulp.task('minify-html', function() {
 			minifyCSS: true
 		}))
 		.pipe(gulp.dest('dist'));
+	var secondPath = gulp.src('src/views/*.html')
+		.pipe(htmlmin({
+			collapseWhitespace: true,
+			removeComments: true,
+			removeCommentsFromCDATA: true,
+			minifyJS: true,
+			minifyCSS: true
+		}))
+		.pipe(gulp.dest('dist/views'));
+	return merge(firstPath, secondPath);
 });
 
 // Resize images
@@ -56,7 +75,7 @@ gulp.task('resize', function() {
 
 // Compress and optimize images
 gulp.task('images', function() {
-	return gulp.src(['src/img/*.{jpg,png}', 'src/img/thumbs/*.{jpg,png}'])
+	var firstPath = gulp.src(['src/img/*.{jpg,png}', 'src/img/thumbs/*.{jpg,png}'])
 		.pipe(imagemin({
 			progressive: true,
 			svgoPlugins: [
@@ -66,6 +85,17 @@ gulp.task('images', function() {
 			use: [pngquant()]
 		}))
 		.pipe(gulp.dest('dist/img'));
+	var secondPath = gulp.src('src/views/img/*.{jpg,png}')
+		.pipe(imagemin({
+			progressive: true,
+			svgoPlugins: [
+				{removeViewBox: false},
+				{cleanupIDs: false}
+			],
+			use: [pngquant()]
+		}))
+		.pipe(gulp.dest('dist/views/img'));
+	return merge(firstPath, secondPath);
 });
 
 // Watch files for changes

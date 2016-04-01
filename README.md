@@ -69,6 +69,17 @@ We're still only at 87 for Mobile PageSpeed, so I'm going to inline all the CSS,
 
 ###After: Post-Optimization Measurements
 
+**Speed Scores**
+
+* Mobile: 96 / 100
+* Desktop: 97 / 100
+* Goal: Passed
+
+**Remaining Optimizations**
+
+  1. Leverage browser caching
+  2. Enable compression
+
 ##Part 2: Optimize Frames per Second in pizza.html
 
 To optimize views/pizza.html, you will need to modify views/js/main.js until your frames per second rate is 60 fps or higher. You will find instructive comments in main.js.

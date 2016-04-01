@@ -25,6 +25,7 @@
     "gulp-inline-css": "^3.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.5.3",
-    "imagemin-pngquant": "^4.2.2"
+    "imagemin-pngquant": "^4.2.2",
+    "merge-stream": "^1.0.0"
   }
 }
