@@ -186,6 +186,11 @@ Solution I followed Paul's example here to add rAF on the scroll event:
 
 [Debouncing Scroll Events](http://www.html5rocks.com/en/tutorials/speed/animations/#an-example)
 
+###Issue 6: Layout time on pizza resizing (unresolved)
 
+Haven't figured out a solution here. Layout is taking around 20ms when pizzas are resized. I tried changing the CSS to utilize flexbox as suggested here:
 
+[Avoid Large, Complex Layouts](https://developers.google.com/web/fundamentals/performance/rendering/avoid-large-complex-layouts-and-layout-thrashing?hl=en)
+
+Not a big help. I also tried limiting the layout scope to #pizzaGenerator. This did not cut down time, either.
 
