@@ -1,11 +1,14 @@
 # Udacity Front-End Nanodegree Project Five: Website Performance Optimization
 
-##Part 1: Optimize PageSpeed Insights score for index.html
+##Instructions
+
+[Test the PageSpeed Insights score for index.html](https://laurenfromseattle.github.io/frontend-nanodegree-mobile-portfolio/dist/index.html) by copying and pasting the URL into the [PageSpeedsInsights page](https://developers.google.com/speed/pagespeed/insights/).
+
+[Check out the 60FPS action here](https://laurenfromseattle.github.io/frontend-nanodegree-mobile-portfolio/dist/views/pizza.html) by running a timelin in DevTools
+
+##Part 1: Optimize PageSpeed Insights Score for index.html
 
 ###Before: Pre-Optimization Measurements
-
-"First measure, then optimize. To measure, go here:
-[Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)
 
 **Speed Scores**
 
